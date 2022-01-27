@@ -3,10 +3,10 @@ from pages.accounts import Accounts
 from pages.login import Login
 
 
-# def test_login(browser):
-#     log = Login(browser)
-#     log.load()
-#     log.testcase()
+def test_login(browser):
+    log = Login(browser)
+    log.load()
+    log.testcase()
 
 
 # def test_add_product_attribute(browser):
@@ -18,6 +18,6 @@ from pages.login import Login
 #     product = ProductAttribute(browser)
 #     product.delete_attribute()
 
-def test_update_pass(browser):
-    acc = Accounts(browser)
-    acc.testcase()
+# def test_update_pass(browser):
+#     acc = Accounts(browser)
+#     acc.testcase()
