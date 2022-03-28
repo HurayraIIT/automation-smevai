@@ -1,0 +1,22 @@
+{
+  "name": "automation-smevai",
+  "version": "1.0.0",
+  "description": "Automation Testing of SMEVai.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HurayraIIT/automation-smevai.git"
+  },
+  "author": "Abu Hurayra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HurayraIIT/automation-smevai/issues"
+  },
+  "homepage": "https://github.com/HurayraIIT/automation-smevai#readme",
+  "dependencies": {
+    "selenium-webdriver": "^4.1.1"
+  }
+}
