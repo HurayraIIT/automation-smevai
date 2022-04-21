@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/HurayraIIT/automation-smevai#readme",
   "dependencies": {
+    "cypress": "^9.5.4",
     "selenium-webdriver": "^4.1.1"
   }
 }
