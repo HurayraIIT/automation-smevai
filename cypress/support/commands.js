@@ -40,8 +40,8 @@
 
 Cypress.Commands.add('login', (url, username, password) => {
   cy.visit(url);
-  cy.get(':nth-child(2) > .form__control').type(config.trading_admin_email);
-  cy.get(':nth-child(3) > .form__control').type(config.password);
+  cy.get(':nth-child(2) > .form__control').type(username);
+  cy.get(':nth-child(3) > .form__control').type(password);
   cy.get('.button').click();
-  cy.url().should('contain', '/dashbaord');
+  cy.url().should('contain', '/dashboard');
 });
