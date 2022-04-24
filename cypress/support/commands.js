@@ -23,3 +23,24 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+let LOCAL_STORAGE_MEMORY = {};
+
+Cypress.Commands.add("saveLocalStorage", () => {
+  Object.keys(localStorage).forEach(key => {
+    LOCAL_STORAGE_MEMORY[key] = localStorage[key];
+  });
+});
+
+Cypress.Commands.add("restoreLocalStorage", () => {
+  Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
+    localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
+  });
+});
+
+Cypress.Commands.add('login', (url, username, password) => {
+  cy.visit(url);
+  cy.get(':nth-child(2) > .form__control').type(config.trading_admin_email);
+  cy.get(':nth-child(3) > .form__control').type(config.password);
+  cy.get('.button').click();
+});
