@@ -8,22 +8,17 @@
 
 const config = require('../../../util/config.json');
 
-describe('Login Page Test', () => {
+describe('Login Page Load Test', () => {
     beforeEach(() => {
-        cy.restoreLocalStorage();
-        cy.visit(config.live_site);
+        cy.visit(config.testing_site);
     });
     
-    afterEach(() => {
-        cy.saveLocalStorage();
-    });
-    
-    it('Test the main login page', () => {
+    it('Test the main login page contents', () => {
         cy.contains('Phone Number / Email');
         cy.url().should('include', 'smevai.com/login');
     });
     
-    it('Test the signup/register page', () => {
+    it('Test the signup/register page contents', () => {
         // Go to the signup page and verify
         cy.contains('Signup').click();
         cy.url().should('include', 'smevai.com/register');
@@ -32,7 +27,7 @@ describe('Login Page Test', () => {
         cy.contains('Already have an account?');
     });
     
-    it('Test the forgot password page', () => {
+    it('Test the forgot password page contents', () => {
         // Go to the forgot password page
         cy.contains('Forgot Password?').click();
         cy.url().should('include', 'smevai.com/password/reset');
