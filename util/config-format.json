@@ -1,6 +1,11 @@
 {
-  "testing_site": "https://testing.smevai.com",
-  "live_site": "https://app.smevai.com",
+  "testing_site": "",
+  "testing_site_Version": "",
+  "testing_site_Last_Updated": "",
+
+  "live_site": "",
+  "live_site_Version": "",
+  "live_site_Last_Updated": "",
 
   "trading_admin_email": "",
   "service_admin_email": "",
