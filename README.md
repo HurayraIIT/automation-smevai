@@ -1,2 +1,2 @@
 # automation-smevai
-Automation Testing of SMEVai.
+Automation Testing of SMEVai using Selenium Python
