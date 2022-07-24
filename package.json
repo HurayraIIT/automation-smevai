@@ -21,7 +21,7 @@
     "url": "https://github.com/HurayraIIT/automation-smevai/issues"
   },
   "homepage": "https://github.com/HurayraIIT/automation-smevai#readme",
-  "dependencies": {
+  "devDependencies": {
     "cypress": "^10.3.1"
   }
 }
