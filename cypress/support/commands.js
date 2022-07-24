@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Cypress.Commands.add('loginViaUI', (email, password) => {
+//   cy.visit('https://app.smevai.com')
+//   cy.get(':nth-child(2) > .form__control').type(email)
+//   cy.get("input#password").type(password)
+//   cy.get("button#submit").click()
+//   cy.url().should('contain.text', 'dashboard')
+// })
