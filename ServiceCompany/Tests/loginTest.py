@@ -1,12 +1,8 @@
 import time
-import sys
-import os
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from Pages.loginPage import LoginPage
-from Pages.dashboardPage import DashboardPage
+from ServiceCompany.Pages.loginPage import LoginPage
+from ServiceCompany.Pages.dashboardPage import DashboardPage
 
 
 class LoginTest(unittest.TestCase):
@@ -20,7 +16,7 @@ class LoginTest(unittest.TestCase):
         self.driver.get("https://app.smevai.com")
 
         login = LoginPage(self.driver)
-        login.enter_username("abuhurayra183+tpta1@gmail.com")
+        login.enter_username("abuhurayra183+tpsa1@gmail.com")
         login.enter_password("pass1234")
         login.click_submit()
         time.sleep(2)
