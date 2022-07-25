@@ -1,0 +1,2 @@
+class Locators:
+    pass
