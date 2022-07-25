@@ -1,5 +1,5 @@
 /.idea/
 /test/.pytest_cache/
-/TradingCompany/Tests/.pytest_cache
+/Tests/.pytest_cache
 /ServiceCompany/Tests/.pytest_cache
 /venv/
