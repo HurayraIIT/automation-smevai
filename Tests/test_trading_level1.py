@@ -1,16 +1,34 @@
 import time
 from Pages.loginPage import LoginPage
 from Pages.TradingCompany.dashboardPage import DashboardPage
+from Pages.TradingCompany.companySettingsPage import CompanySettingsPage
 from config import DATA
 
 
 def test_trading_level1(browser):
+    # Login Into Trading Site
     login = LoginPage(browser)
     login.load()
     login.login(DATA.TRADING_EMAIL, DATA.PASSWORD)
     time.sleep(2)
 
-    dashboard = DashboardPage(browser)
-    dashboard.load()
-    dashboard.click_logout()
-    time.sleep(5)
+    # TODO: Perform Factory Reset
+    company_settings = CompanySettingsPage(browser)
+    company_settings.load()
+    company_settings.perform_factory_reset()
+
+    # TODO: Create a category
+
+    # TODO: Create an item
+
+    # TODO: Create a supplier
+
+    # TODO: Create a customer
+
+    # TODO: Create a purchase invoice
+
+    # TODO: Create a sales invoice
+
+    # TODO: Create
+
+
