@@ -4,7 +4,7 @@ from Pages.TradingCompany.dashboardPage import DashboardPage
 from config import DATA
 
 
-def test_login_logout_valid(browser):
+def test_trading_level1(browser):
     login = LoginPage(browser)
     login.load()
     login.login(DATA.TRADING_EMAIL, DATA.PASSWORD)

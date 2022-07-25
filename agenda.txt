@@ -1,0 +1,29 @@
+test_trading_level1.py
+
+Steps:
+
+1. Login
+2. Factory Reset
+3. Create Category
+4. Create Item
+5. Create Supplier
+6. Create Customer
+7. Create Purchase Invoice
+8. Create Sales Invoice
+9. Receive Payment for sales invoice
+10. Pay for purchase invoice
+11. Check Balance Sheet
+
+Pages:
+
+1. Login Page
+2. Dashboard
+3. Company Settings Page
+4. Category Page
+5. Item Page
+6. Supplier Page
+7. Customer Page
+8. Purchase Invoice Page
+9. Sales Invoice Page
+10. Balance Sheet Page
+11. Stock Summary Page
