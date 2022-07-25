@@ -16,17 +16,18 @@ class LoginTest(unittest.TestCase):
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
-    def test_login_valid(self):
-        driver = self.driver
-        driver.get("https://app.smevai.com")
+    def test_login_logout_valid(self):
+        self.driver.get("https://app.smevai.com")
 
-        login = LoginPage(driver)
-        driver.find_element(By.NAME, login.username_textbox_name).send_keys("wpdabh+autota1@gmail.com")
-        driver.find_element(By.NAME, login.password_textbox_name).send_keys("pass1234")
-        driver.find_element(By.XPATH, login.submit_button_xpath).click()
+        login = LoginPage(self.driver)
+        login.enter_username("abuhurayra183+tpta1@gmail.com")
+        login.enter_password("pass1234")
+        login.click_submit()
+        time.sleep(2)
 
-
-        time.sleep(7)
+        dashboard = DashboardPage(self.driver)
+        dashboard.click_logout()
+        time.sleep(5)
 
     @classmethod
     def tearDownClass(cls) -> None:
