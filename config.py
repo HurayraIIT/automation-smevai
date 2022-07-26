@@ -21,6 +21,7 @@ class DATA:
     FORGOT_PASSWORD_PAGE = SITE + "/password/reset"
 
     # Trading Company Pages
+
     DASHBOARD = SITE + "/dashboard"
 
     COMPANY_SETTINGS_PAGE = SITE + "/settings/company"
@@ -33,3 +34,10 @@ class DATA:
 
     ITEM_LIST_PAGE = SITE + "/product/item"
     ITEM_CREATE_PAGE = SITE + "/product/item/create"
+
+    SUPPLIER_LIST_PAGE = SITE + "/purchase/supplier"
+    SUPPLIER_CREATE_PAGE = SITE + "/purchase/supplier/create"
+
+    CUSTOMER_LIST_PAGE = SITE + "/sales/customer"
+    CUSTOMER_CREATE_PAGE = SITE + "/sales/customer/create"
+
