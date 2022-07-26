@@ -41,6 +41,12 @@ class LINKS:
     CUSTOMER_LIST_PAGE = SITE + "/sales/customer"
     CUSTOMER_CREATE_PAGE = SITE + "/sales/customer/create"
 
+    PURCHASE_INVOICE_LIST_PAGE = SITE + "/purchase/invoice"
+    PURCHASE_INVOICE_CREATE_PAGE = SITE + "/purchase/invoice/create"
+
+    SALES_INVOICE_LIST_PAGE = SITE + "/sales/invoice"
+    SALES_INVOICE_CREATE_PAGE = SITE + "/sales/invoice/create"
+
 
 class DATA:
     # Category data
@@ -62,5 +68,19 @@ class DATA:
     customer_phone = "1657887766"
 
     # Purchase invoice
+    PURCHASE_INVOICE_NUMBER = "10000001"
+    PURCHASE_ITEM_QUANTITY = 5
+    PURCHASE_ITEM_DISCOUNT = 10
+    PURCHASE_SHIPPING = 50
+    PURCHASE_VAT_PERCENT = 10
+    PURCHASE_INVOICE_SUBTOTAL = 450
+    PURCHASE_INVOICE_TOTAL = 545
 
     # Sales invoice
+    SALES_INVOICE_NUMBER = "10000001"
+    SALES_ITEM_QUANTITY = 5
+    SALES_ITEM_DISCOUNT = 10
+    SALES_SHIPPING = 100
+    SALES_VAT_PERCENT = 10
+    SALES_INVOICE_SUBTOTAL = 900
+    SALES_INVOICE_TOTAL = 1090
