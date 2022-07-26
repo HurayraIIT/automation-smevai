@@ -1,11 +1,11 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from config import DATA
+from config import LINKS
 
 
 class CompanySettingsPage:
-    URL = DATA.COMPANY_SETTINGS_PAGE
+    URL = LINKS.COMPANY_SETTINGS_PAGE
 
     heading_xpath = (By.XPATH, f"//h3[normalize-space()='Company Settings']")
     heading_text = f"Company Settings"
@@ -34,7 +34,7 @@ class CompanySettingsPage:
 
         time.sleep(3)
         self.browser.find_element(*self.vat_applicable_checkbox_xpath).click()
-        self.browser.find_element(*self.password_input_xpath).send_keys(DATA.PASSWORD)
+        self.browser.find_element(*self.password_input_xpath).send_keys(LINKS.PASSWORD)
         self.browser.find_element(*self.confirm_button_xpath).click()
         time.sleep(3)
         #

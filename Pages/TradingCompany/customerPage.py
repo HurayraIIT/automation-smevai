@@ -1,12 +1,12 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from config import DATA
+from config import LINKS
 
 
 class CustomerPage:
-    LIST_URL = DATA.CUSTOMER_LIST_PAGE
-    CREATE_URL = DATA.CUSTOMER_CREATE_PAGE
+    LIST_URL = LINKS.CUSTOMER_LIST_PAGE
+    CREATE_URL = LINKS.CUSTOMER_CREATE_PAGE
 
     create_heading_xpath = (By.XPATH, f"//h2[@class='access__form__title']")
     create_heading_text = f"Create Customer"

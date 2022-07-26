@@ -1,12 +1,12 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from config import DATA
+from config import LINKS
 
 
 class ItemPage:
-    LIST_URL = DATA.ITEM_LIST_PAGE
-    CREATE_URL = DATA.ITEM_CREATE_PAGE
+    LIST_URL = LINKS.ITEM_LIST_PAGE
+    CREATE_URL = LINKS.ITEM_CREATE_PAGE
 
     create_heading_xpath = (By.XPATH, f"//h2[normalize-space()='Create Item']")
     create_heading_text = f"Create Item"

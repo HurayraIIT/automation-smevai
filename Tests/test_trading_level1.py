@@ -6,14 +6,14 @@ from Pages.TradingCompany.itemPage import ItemPage
 from Pages.TradingCompany.supplierPage import SupplierPage
 from Pages.TradingCompany.customerPage import CustomerPage
 from Pages.TradingCompany.companySettingsPage import CompanySettingsPage
-from config import DATA
+from config import LINKS, DATA
 
 
 def test_trading_level1(browser):
     # DONE: Login Into Trading Site
     login = LoginPage(browser)
     login.load()
-    login.login(DATA.TRADING_EMAIL, DATA.PASSWORD)
+    login.login(LINKS.TRADING_EMAIL, LINKS.PASSWORD)
     time.sleep(2)
 
     # DONE: Perform Factory Reset
@@ -24,27 +24,27 @@ def test_trading_level1(browser):
     # DONE: Create a category
     category = CategoryPage(browser)
     category.load_create_page()
-    category.create_category("cat001")
+    category.create_category(cat_name=DATA.cat_name)
 
-    # TODO: Create an item
+    # DONE: Create an item
     item = ItemPage(browser)
     item.load_create_page()
-    item.create_item(item_name="item01",
-                     cat_name="cat001",
-                     item_sku="sk01",
-                     item_purchase_price=100,
-                     item_sales_price=200,
-                     item_description="item description")
+    item.create_item(item_name=DATA.item_name,
+                     cat_name=DATA.cat_name,
+                     item_sku=DATA.item_sku,
+                     item_purchase_price=DATA.item_purchase_price,
+                     item_sales_price=DATA.item_sales_price,
+                     item_description=DATA.item_description)
 
     # DONE: Create a supplier
     supplier = SupplierPage(browser)
     supplier.load_create_page()
-    supplier.create_supplier(supplier_name="supplier001", supplier_phone="1657887766")
+    supplier.create_supplier(supplier_name=DATA.supplier_name, supplier_phone=DATA.supplier_phone)
 
     # DONE: Create a customer
     customer = CustomerPage(browser)
     customer.load_create_page()
-    customer.create_customer(customer_name="customer001", customer_phone="1657887766")
+    customer.create_customer(customer_name=DATA.customer_name, customer_phone=DATA.customer_phone)
 
     # TODO: Create a purchase invoice
 

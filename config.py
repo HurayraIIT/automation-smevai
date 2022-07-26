@@ -1,5 +1,5 @@
 
-class DATA:
+class LINKS:
 
     ROOT = "smevai.com"
 
@@ -41,3 +41,26 @@ class DATA:
     CUSTOMER_LIST_PAGE = SITE + "/sales/customer"
     CUSTOMER_CREATE_PAGE = SITE + "/sales/customer/create"
 
+
+class DATA:
+    # Category data
+    cat_name = "cat001"
+
+    # Item data
+    item_name = "item001"
+    item_sku = "sk001"
+    item_purchase_price = 100
+    item_sales_price = 200
+    item_description = "item description"
+
+    # Supplier
+    supplier_name = "supplier001"
+    supplier_phone = "1657887766"
+
+    # Customer
+    customer_name = "customer001"
+    customer_phone = "1657887766"
+
+    # Purchase invoice
+
+    # Sales invoice

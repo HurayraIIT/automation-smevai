@@ -1,13 +1,13 @@
 import time
 from Pages.loginPage import LoginPage
 from Pages.TradingCompany.dashboardPage import DashboardPage
-from config import DATA
+from config import LINKS
 
 
 def test_login_logout_valid(browser):
     login = LoginPage(browser)
     login.load()
-    login.login(DATA.TRADING_EMAIL, DATA.PASSWORD)
+    login.login(LINKS.TRADING_EMAIL, LINKS.PASSWORD)
     time.sleep(2)
 
     dashboard = DashboardPage(browser)

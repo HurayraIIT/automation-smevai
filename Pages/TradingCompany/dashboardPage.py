@@ -1,11 +1,11 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from config import DATA
+from config import LINKS
 
 
 class DashboardPage:
 
-    URL = DATA.DASHBOARD
+    URL = LINKS.DASHBOARD
     dashboard_title_text = f"Dashboard"
     dashboard_title_text_xpath = (By.XPATH, f"//h2[normalize-space()='Dashboard']")
     logout_button_link_xpath = (By.XPATH, f"//span[normalize-space()='Log Out']")

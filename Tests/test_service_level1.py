@@ -1,6 +1,6 @@
 import time
 from Pages.loginPage import LoginPage
-from config import DATA
+from config import LINKS
 
 
 def test_service_level1(browser):
