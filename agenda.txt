@@ -2,17 +2,25 @@ test_trading_level1.py
 
 Steps:
 
-1. Login
-2. Factory Reset
-3. Create Category
-4. Create Item
-5. Create Supplier
-6. Create Customer
-7. Create Purchase Invoice
-8. Create Sales Invoice
-9. Receive Payment for sales invoice
-10. Pay for purchase invoice
-11. Check Balance Sheet
+1. Login - DONE
+2. Factory Reset - DONE
+3. Create Category - DONE
+4. Create Item - DONE
+5. Create Supplier - DONE
+6. Create Customer - DONE
+
+7. Create Purchase Invoice - DONE
+8. Complete Purchase Invoice - DONE
+9. Verify transaction history entry
+10. Verify Account Payable Entry
+11. Verify Stock Summary stock update
+12. Verify Income Statement
+13. Verify Balance Sheet
+14. Verify Dashboard Stock Update
+
+15. Create Sales Invoice
+16. Complete Sales Invoice
+17. ...to be continued
 
 Pages:
 

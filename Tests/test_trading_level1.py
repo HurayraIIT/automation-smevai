@@ -60,3 +60,5 @@ def test_trading_level1(browser):
     # TODO: Create
 
 
+def test_temp(browser):
+    pass
