@@ -15,8 +15,8 @@ Steps:
 10. Verify Account Payable Entry - DONE
 11. Verify Stock Summary stock update - DONE
 12. Verify Income Statement - DONE
-13. Verify Balance Sheet
-14. Verify Dashboard Stock Update
+13. Verify Balance Sheet - DONE
+14. Verify Dashboard Stock Update - DONE
 
 15. Create Sales Invoice
 16. Complete Sales Invoice

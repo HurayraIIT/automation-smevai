@@ -92,6 +92,10 @@ class PurchaseInvoicePage:
         self.browser.find_element(*self.item_discount_xpath).clear()
         self.browser.find_element(*self.item_discount_xpath).send_keys(purchase_item_discount)
 
+        time.sleep(1)
+        self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+        time.sleep(1)
+
         # Additional Items
 
         element = self.browser.find_element(*self.select_additional_items_xpath)

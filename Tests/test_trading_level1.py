@@ -1,6 +1,7 @@
 import time
 
 from Pages.TradingCompany.accountPayablePage import AccountPayablePage
+from Pages.TradingCompany.balanceSheetPage import BalanceSheetPage
 from Pages.TradingCompany.incomeStatementPage import IncomeStatementPage
 from Pages.TradingCompany.stockSummaryPage import StockSummaryPage
 from Pages.TradingCompany.transactionHistoryPage import TransactionHistoryPage
@@ -102,19 +103,34 @@ def test_trading_level1(browser):
         net_profit=DATA.PURCHASE_INVOICE_TOTAL * (-1))
     print("OK: income_statement")
 
+    # Verify Balance Sheet
+    balance_sheet = BalanceSheetPage(browser)
+    balance_sheet.check_balance_sheet(
+        cash_wallet=0.00,
+        bank_wallet=0.00,
+        mobile_banking=0.00,
+        account_receivable=0.00,
+        inventory=DATA.item_purchase_price * DATA.PURCHASE_ITEM_QUANTITY,
+        asset=0.00,
+        vat_amount="{:.2f}".format((DATA.PURCHASE_VAT_PERCENT / 100) * DATA.PURCHASE_INVOICE_SUBTOTAL),
+        owners_equity=0.00,
+        accounts_payable=DATA.PURCHASE_INVOICE_TOTAL,
+        total_asset=DATA.PURCHASE_INVOICE_TOTAL,
+        total_liabilities=DATA.PURCHASE_INVOICE_TOTAL)
+    print("OK: Balance Sheet")
+
+    # Verify Dashboard Stock Update
+    dashboard2 = DashboardPage(browser)
+    dashboard2.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    print("OK: Dashboard Stock Update")
+
     # TODO: Create a sales invoice
 
     # TODO: Create
 
 
 def test_temp(browser):
-    # Verify income_statement
-    income_statement = IncomeStatementPage(browser)
-    # print("{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10))
-    income_statement.check_income_statement(total_purchase="{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10),
-                                            purchase_shipping_charge=DATA.PURCHASE_SHIPPING,
-                                            total_cost_of_purchase=DATA.PURCHASE_INVOICE_TOTAL,
-                                            gross_profit=DATA.PURCHASE_INVOICE_TOTAL*(-1),
-                                            operation_income=DATA.PURCHASE_INVOICE_TOTAL*(-1),
-                                            net_profit=DATA.PURCHASE_INVOICE_TOTAL*(-1))
-    print("OK: income_statement")
+    # Verify Dashboard Stock Update
+    dashboard2 = DashboardPage(browser)
+    dashboard2.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    print("OK: Dashboard Stock Update")
