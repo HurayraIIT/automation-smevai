@@ -23,5 +23,5 @@ class LoginPage:
         self.browser.find_element(*self.username_xpath).send_keys(username)
         self.browser.find_element(*self.password_xpath).send_keys(password)
         self.browser.find_element(*self.submit_xpath).click()
+        time.sleep(2)
         assert ("dashboard" in self.browser.current_url) == True
-

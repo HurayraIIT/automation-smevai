@@ -15,7 +15,6 @@ def test_trading_level1(browser):
     login = LoginPage(browser)
     login.load()
     login.login(LINKS.TRADING_EMAIL, LINKS.PASSWORD)
-    time.sleep(2)
 
     # DONE: Perform Factory Reset
     company_settings = CompanySettingsPage(browser)
@@ -47,7 +46,7 @@ def test_trading_level1(browser):
     customer.load_create_page()
     customer.create_customer(customer_name=DATA.customer_name, customer_phone=DATA.customer_phone)
 
-    # TODO: Create a purchase invoice
+    # DONE: Create a purchase invoice
     purchase = PurchaseInvoicePage(browser)
     purchase.load_create_page()
     purchase.create_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER,

@@ -1,6 +1,8 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
+
 from config import LINKS, DATA
 
 
@@ -25,9 +27,9 @@ class PurchaseInvoicePage:
     item_quantity_xpath = (By.XPATH, f"//div[@class='table__col col__qty']//input[@placeholder='eg: 10']")
     item_discount_xpath = (By.XPATH, f"//div[@class='table__col col__discount']//input[@placeholder='eg: 10']")
 
-    select_additional_items_xpath = (By.XPATH, f"//div[@class='table__col col__head col__total']//div[@class='d-flex']")
-    shipping_input_xpath = (By.XPATH, f"(//input[@placeholder='eg: 300.00'])[1]")
-    vat_input_xpath = (By.XPATH, f"(//input[@placeholder='eg: 300.00'])[2]")
+    select_additional_items_xpath = (By.XPATH, f'//*[@id="purchaseInvoice"]/div/div[6]/div/div[2]/div/div/select')
+    shipping_input_xpath = (By.XPATH, f'//*[@id="purchaseInvoice"]/div/div[6]/div[2]/div[3]/input')
+    vat_input_xpath = (By.XPATH, f'//*[@id="purchaseInvoice"]/div/div[6]/div[3]/div[2]/input')
 
     add_signature_xpath = (By.XPATH, f"//span[@class='label__text']")
     default_note_btn_xpath = (By.XPATH, f"//button[normalize-space()='Default Note']")
@@ -48,12 +50,13 @@ class PurchaseInvoicePage:
         time.sleep(1)
         assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
 
-    def create_purchase_invoice(self, purchase_inv_number="10000001",
-                    purchase_item_quantity=5,
-                    purchase_item_discount=10,
-                    purchase_item_shipping=50,
-                    purchase_item_vat_percent=10):
-
+    def create_purchase_invoice(self,
+                                purchase_inv_number="10000001",
+                                purchase_item_quantity=5,
+                                purchase_item_discount=10,
+                                purchase_item_shipping=50,
+                                purchase_item_vat_percent=10):
+        self.browser.find_element(*self.invoice_number_xpath).clear()
         self.browser.find_element(*self.invoice_number_xpath).send_keys(purchase_inv_number)
 
         self.browser.find_element(*self.supplier_multiselect_xpath).click()
@@ -75,27 +78,30 @@ class PurchaseInvoicePage:
         self.browser.find_element(*self.item_discount_xpath).clear()
         self.browser.find_element(*self.item_discount_xpath).send_keys(purchase_item_discount)
 
-        # TODO: FIX THIS
-        self.browser.find_element(*self.select_additional_items_xpath).click()
+        # Additional Items
+
+        element = self.browser.find_element(*self.select_additional_items_xpath)
+        element.click()
+        select = Select(element)
+        select.select_by_visible_text("VAT")
         time.sleep(1)
-        self.browser.find_element(*self.select_additional_items_xpath).send_keys(Keys.ARROW_DOWN)
-        time.sleep(1)
-        self.browser.find_element(*self.select_additional_items_xpath).send_keys(Keys.ENTER)
-        time.sleep(1)
-        self.browser.find_element(*self.select_additional_items_xpath).send_keys(Keys.ARROW_DOWN)
-        time.sleep(1)
-        self.browser.find_element(*self.select_additional_items_xpath).send_keys(Keys.ENTER)
+        select.select_by_visible_text("Shipping Charge")
         time.sleep(1)
 
+        self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+        time.sleep(1)
+
+        self.browser.find_element(*self.shipping_input_xpath).click()
+        self.browser.find_element(*self.shipping_input_xpath).clear()
         self.browser.find_element(*self.shipping_input_xpath).send_keys(purchase_item_shipping)
+        time.sleep(1)
+
+        self.browser.find_element(*self.vat_input_xpath).click()
+        self.browser.find_element(*self.vat_input_xpath).clear()
         self.browser.find_element(*self.vat_input_xpath).send_keys(purchase_item_vat_percent)
+        time.sleep(2)
 
         self.browser.find_element(*self.add_signature_xpath).click()
-
         self.browser.find_element(*self.save_btn_xpath).click()
         time.sleep(2)
         assert self.browser.current_url == self.LIST_URL
-        time.sleep(3)
-
-        # assert self.browser.find_element(*self.factory_reset_title_xpath).text == self.factory_reset_title_text
-

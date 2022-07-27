@@ -61,7 +61,3 @@ class ItemPage:
         self.browser.find_element(*self.save_btn_xpath).click()
         time.sleep(2)
         assert self.browser.current_url == self.LIST_URL
-        time.sleep(3)
-
-        # assert self.browser.find_element(*self.factory_reset_title_xpath).text == self.factory_reset_title_text
-
