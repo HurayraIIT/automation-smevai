@@ -11,10 +11,10 @@ Steps:
 
 7. Create Purchase Invoice - DONE
 8. Complete Purchase Invoice - DONE
-9. Verify transaction history entry
-10. Verify Account Payable Entry
-11. Verify Stock Summary stock update
-12. Verify Income Statement
+9. Verify transaction history entry - DONE
+10. Verify Account Payable Entry - DONE
+11. Verify Stock Summary stock update - DONE
+12. Verify Income Statement - DONE
 13. Verify Balance Sheet
 14. Verify Dashboard Stock Update
 

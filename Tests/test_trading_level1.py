@@ -1,6 +1,7 @@
 import time
 
 from Pages.TradingCompany.accountPayablePage import AccountPayablePage
+from Pages.TradingCompany.incomeStatementPage import IncomeStatementPage
 from Pages.TradingCompany.stockSummaryPage import StockSummaryPage
 from Pages.TradingCompany.transactionHistoryPage import TransactionHistoryPage
 from Pages.loginPage import LoginPage
@@ -89,18 +90,31 @@ def test_trading_level1(browser):
                       available_stock=DATA.PURCHASE_ITEM_QUANTITY)
     print("OK: Stock Summary stock update")
 
+    # Verify income_statement
+    income_statement = IncomeStatementPage(browser)
+    # print("{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10))
+    income_statement.check_income_statement(
+        total_purchase="{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL * (1 + DATA.PURCHASE_VAT_PERCENT) / 10),
+        purchase_shipping_charge=DATA.PURCHASE_SHIPPING,
+        total_cost_of_purchase=DATA.PURCHASE_INVOICE_TOTAL,
+        gross_profit=DATA.PURCHASE_INVOICE_TOTAL * (-1),
+        operation_income=DATA.PURCHASE_INVOICE_TOTAL * (-1),
+        net_profit=DATA.PURCHASE_INVOICE_TOTAL * (-1))
+    print("OK: income_statement")
+
     # TODO: Create a sales invoice
 
     # TODO: Create
 
 
 def test_temp(browser):
-    # Verify Stock Summary stock update
-    stock = StockSummaryPage(browser)
-    stock.check_stock(item_name=DATA.item_name,
-                      purchase=DATA.PURCHASE_ITEM_QUANTITY,
-                      sale=0,
-                      purchase_return=0,
-                      sales_return=0,
-                      available_stock=DATA.PURCHASE_ITEM_QUANTITY)
-    print("OK: Stock Summary stock update")
+    # Verify income_statement
+    income_statement = IncomeStatementPage(browser)
+    # print("{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10))
+    income_statement.check_income_statement(total_purchase="{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10),
+                                            purchase_shipping_charge=DATA.PURCHASE_SHIPPING,
+                                            total_cost_of_purchase=DATA.PURCHASE_INVOICE_TOTAL,
+                                            gross_profit=DATA.PURCHASE_INVOICE_TOTAL*(-1),
+                                            operation_income=DATA.PURCHASE_INVOICE_TOTAL*(-1),
+                                            net_profit=DATA.PURCHASE_INVOICE_TOTAL*(-1))
+    print("OK: income_statement")
