@@ -1,4 +1,8 @@
 import time
+
+from Pages.TradingCompany.accountPayablePage import AccountPayablePage
+from Pages.TradingCompany.stockSummaryPage import StockSummaryPage
+from Pages.TradingCompany.transactionHistoryPage import TransactionHistoryPage
 from Pages.loginPage import LoginPage
 from Pages.TradingCompany.dashboardPage import DashboardPage
 from Pages.TradingCompany.categoryPage import CategoryPage
@@ -15,16 +19,19 @@ def test_trading_level1(browser):
     login = LoginPage(browser)
     login.load()
     login.login(LINKS.TRADING_EMAIL, LINKS.PASSWORD)
+    print("OK: Logged IN")
 
     # DONE: Perform Factory Reset
     company_settings = CompanySettingsPage(browser)
     company_settings.load()
     company_settings.perform_factory_reset()
+    print("OK: Perform Factory Reset")
 
     # DONE: Create a category
     category = CategoryPage(browser)
     category.load_create_page()
     category.create_category(cat_name=DATA.cat_name)
+    print("OK: Create a category")
 
     # DONE: Create an item
     item = ItemPage(browser)
@@ -35,16 +42,19 @@ def test_trading_level1(browser):
                      item_purchase_price=DATA.item_purchase_price,
                      item_sales_price=DATA.item_sales_price,
                      item_description=DATA.item_description)
+    print("OK: Create an item")
 
     # DONE: Create a supplier
     supplier = SupplierPage(browser)
     supplier.load_create_page()
     supplier.create_supplier(supplier_name=DATA.supplier_name, supplier_phone=DATA.supplier_phone)
+    print("OK: Create a supplier")
 
     # DONE: Create a customer
     customer = CustomerPage(browser)
     customer.load_create_page()
     customer.create_customer(customer_name=DATA.customer_name, customer_phone=DATA.customer_phone)
+    print("OK: Create a customer")
 
     # DONE: Create a purchase invoice
     purchase = PurchaseInvoicePage(browser)
@@ -54,6 +64,30 @@ def test_trading_level1(browser):
                                      purchase_item_shipping=DATA.PURCHASE_SHIPPING,
                                      purchase_item_vat_percent=DATA.PURCHASE_VAT_PERCENT)
     purchase.complete_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER)
+    print("OK: Create a purchase invoice")
+
+    # Verify transaction history entry
+    transaction = TransactionHistoryPage(browser)
+    transaction.check_entry(account_head="Purchase", transaction_type="Due", amount=DATA.PURCHASE_INVOICE_TOTAL)
+    print("OK: transaction history entry")
+
+    # Verify Account Payable Entry
+    payable = AccountPayablePage(browser)
+    payable.check_entry(supplier_name=DATA.supplier_name,
+                        total_purchase=DATA.PURCHASE_INVOICE_TOTAL,
+                        total_paid=0,
+                        total_due=DATA.PURCHASE_INVOICE_TOTAL)
+    print("OK: Account Payable Entry")
+
+    # Verify Stock Summary stock update
+    stock = StockSummaryPage(browser)
+    stock.check_stock(item_name=DATA.item_name,
+                      purchase=DATA.PURCHASE_ITEM_QUANTITY,
+                      sale=0,
+                      purchase_return=0,
+                      sales_return=0,
+                      available_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    print("OK: Stock Summary stock update")
 
     # TODO: Create a sales invoice
 
@@ -61,4 +95,12 @@ def test_trading_level1(browser):
 
 
 def test_temp(browser):
-    pass
+    # Verify Stock Summary stock update
+    stock = StockSummaryPage(browser)
+    stock.check_stock(item_name=DATA.item_name,
+                      purchase=DATA.PURCHASE_ITEM_QUANTITY,
+                      sale=0,
+                      purchase_return=0,
+                      sales_return=0,
+                      available_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    print("OK: Stock Summary stock update")

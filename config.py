@@ -47,6 +47,16 @@ class LINKS:
     SALES_INVOICE_LIST_PAGE = SITE + "/sales/invoice"
     SALES_INVOICE_CREATE_PAGE = SITE + "/sales/invoice/create"
 
+    # Transaction
+    TRANSACTION_HISTORY_PAGE = SITE + "/transaction/history"
+
+    # Report
+    ACCOUNT_PAYABLE_PAGE = SITE + "/report/account/payable"
+    ACCOUNT_RECEIVABLE_PAGE = SITE + "/report/account/receivable"
+    STOCK_SUMMARY_PAGE = SITE + "/report/stock-summary"
+    INCOME_STATEMENT_PAGE = SITE + "/report/income-statement"
+    CASH_BOOK_PAGE = SITE + "/report/cash-book"
+    BALANCE_SHEET_PAGE = SITE + "/report/balance-sheet"
 
 class DATA:
     # Category data
