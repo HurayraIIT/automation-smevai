@@ -48,12 +48,12 @@ def test_trading_level1(browser):
 
     # DONE: Create a purchase invoice
     purchase = PurchaseInvoicePage(browser)
-    purchase.load_create_page()
     purchase.create_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER,
                                      purchase_item_quantity=DATA.PURCHASE_ITEM_QUANTITY,
                                      purchase_item_discount=DATA.PURCHASE_ITEM_DISCOUNT,
                                      purchase_item_shipping=DATA.PURCHASE_SHIPPING,
                                      purchase_item_vat_percent=DATA.PURCHASE_VAT_PERCENT)
+    purchase.complete_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER)
 
     # TODO: Create a sales invoice
 

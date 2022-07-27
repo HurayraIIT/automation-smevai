@@ -37,18 +37,26 @@ class PurchaseInvoicePage:
     save_btn_xpath = (By.XPATH, f"//button[normalize-space()='Save']")
     cancel_btn_xpath = (By.XPATH, f"//button[normalize-space()='Cancel']")
 
+    # List Page Locators
+    search_xpath = (By.XPATH, f'//*[@id="purchaseTableId_filter"]/label/input')
+    search_result_action_xpath = (By.XPATH, f'//*[@id="purchaseTableId"]/tbody/tr/td[10]/div/a')
+    complete_button_xpath = (By.XPATH, f'//*[@id="purchaseTableId"]/tbody/tr/td[10]/div/ul/li[8]/a')
+    update_confirm_xpath = (By.XPATH, f'//*[@id="invoiceStatusModal"]/div/div/div/div/a[2]')
+    update_cancel_xpath = (By.XPATH, f'//*[@id="invoiceStatusModal"]/div/div/div/div/a[1]')
+    completed_status_xpath = (By.XPATH, f'//*[@id="purchaseTableId"]/tbody/tr/td[5]/span')
+
     def __init__(self, browser):
         self.browser = browser
 
-    def load_create_page(self):
-        self.browser.get(self.CREATE_URL)
-        time.sleep(1)
-        assert self.browser.find_element(*self.create_heading_xpath).text == self.create_heading_text
+    # def load_create_page(self):
+    #     self.browser.get(self.CREATE_URL)
+    #     time.sleep(1)
+    #     assert self.browser.find_element(*self.create_heading_xpath).text == self.create_heading_text
 
-    def load_list_page(self):
-        self.browser.get(self.LIST_URL)
-        time.sleep(1)
-        assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
+    # def load_list_page(self):
+    #     self.browser.get(self.LIST_URL)
+    #     time.sleep(1)
+    #     assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
 
     def create_purchase_invoice(self,
                                 purchase_inv_number="10000001",
@@ -56,6 +64,12 @@ class PurchaseInvoicePage:
                                 purchase_item_discount=10,
                                 purchase_item_shipping=50,
                                 purchase_item_vat_percent=10):
+        # Load Create Page
+        self.browser.get(self.CREATE_URL)
+        time.sleep(1)
+        assert self.browser.find_element(*self.create_heading_xpath).text == self.create_heading_text
+
+        # Enter Values
         self.browser.find_element(*self.invoice_number_xpath).clear()
         self.browser.find_element(*self.invoice_number_xpath).send_keys(purchase_inv_number)
 
@@ -105,3 +119,26 @@ class PurchaseInvoicePage:
         self.browser.find_element(*self.save_btn_xpath).click()
         time.sleep(2)
         assert self.browser.current_url == self.LIST_URL
+
+    def complete_purchase_invoice(self, purchase_inv_number):
+        # Load list page
+        self.browser.get(self.LIST_URL)
+        time.sleep(1)
+        # assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
+
+        # DONE: Search invoice by invoice number
+        self.browser.find_element(*self.search_xpath).click()
+        self.browser.find_element(*self.search_xpath).clear()
+        self.browser.find_element(*self.search_xpath).send_keys(purchase_inv_number)
+        time.sleep(1)
+
+        # DONE: Mark it complete
+        self.browser.find_element(*self.search_result_action_xpath).click()
+        time.sleep(0.5)
+        self.browser.find_element(*self.complete_button_xpath).click()
+        time.sleep(1)
+        self.browser.find_element(*self.update_confirm_xpath).click()
+        time.sleep(1.5)
+
+        # DONE: Check if invoice is completed
+        assert self.browser.find_element(*self.completed_status_xpath).text == "Completed"
