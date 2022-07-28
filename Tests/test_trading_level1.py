@@ -3,6 +3,7 @@ import time
 from Pages.TradingCompany.accountPayablePage import AccountPayablePage
 from Pages.TradingCompany.balanceSheetPage import BalanceSheetPage
 from Pages.TradingCompany.incomeStatementPage import IncomeStatementPage
+from Pages.TradingCompany.salesInvoicePage import SalesInvoicePage
 from Pages.TradingCompany.stockSummaryPage import StockSummaryPage
 from Pages.TradingCompany.transactionHistoryPage import TransactionHistoryPage
 from Pages.loginPage import LoginPage
@@ -130,7 +131,12 @@ def test_trading_level1(browser):
 
 
 def test_temp(browser):
-    # Verify Dashboard Stock Update
-    dashboard2 = DashboardPage(browser)
-    dashboard2.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
-    print("OK: Dashboard Stock Update")
+    # DONE: Create a sales invoice
+    sales = SalesInvoicePage(browser)
+    sales.create_sales_invoice(sales_inv_number=DATA.SALES_INVOICE_NUMBER,
+                               sales_item_quantity=DATA.SALES_ITEM_QUANTITY,
+                               sales_item_discount=DATA.SALES_ITEM_DISCOUNT,
+                               sales_item_shipping=DATA.SALES_SHIPPING,
+                               sales_item_vat_percent=DATA.SALES_VAT_PERCENT)
+    # sales.complete_sales_invoice(sales_inv_number=DATA.SALES_INVOICE_NUMBER)
+    print("OK: Create a sales invoice")
