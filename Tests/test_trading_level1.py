@@ -32,7 +32,6 @@ def test_trading_level1(browser):
 
     # DONE: Create a category
     category = CategoryPage(browser)
-    category.load_create_page()
     category.create_category(cat_name=DATA.cat_name)
     print("OK: Create a category")
 

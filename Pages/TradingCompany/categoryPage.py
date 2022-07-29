@@ -32,6 +32,12 @@ class CategoryPage:
         assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
 
     def create_category(self, cat_name):
+        # Load Create Page
+        self.browser.get(self.CREATE_URL)
+        time.sleep(1)
+        assert self.browser.find_element(*self.create_heading_xpath).text == self.create_heading_text
+
+        # Create Category
         self.browser.find_element(*self.create_category_name_xpath).send_keys(cat_name)
         self.browser.find_element(*self.save_btn_xpath).click()
         time.sleep(2)
