@@ -1,0 +1,37 @@
+test_trading_level1.py
+
+Steps:
+
+1. Login - DONE
+2. Factory Reset - DONE
+3. Create Category - DONE
+4. Create Item - DONE
+5. Create Supplier - DONE
+6. Create Customer - DONE
+
+7. Create Purchase Invoice - DONE
+8. Complete Purchase Invoice - DONE
+9. Verify transaction history entry - DONE
+10. Verify Account Payable Entry - DONE
+11. Verify Stock Summary stock update - DONE
+12. Verify Income Statement - DONE
+13. Verify Balance Sheet - DONE
+14. Verify Dashboard Stock Update - DONE
+
+15. Create Sales Invoice
+16. Complete Sales Invoice
+17. ...to be continued
+
+Pages:
+
+1. Login Page
+2. Dashboard
+3. Company Settings Page
+4. Category Page
+5. Item Page
+6. Supplier Page
+7. Customer Page
+8. Purchase Invoice Page
+9. Sales Invoice Page
+10. Balance Sheet Page
+11. Stock Summary Page
