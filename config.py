@@ -220,3 +220,7 @@ class DATA:
     DB2_CASH_WALLET = fmt2(0)
     DB2_BANK_WALLET = fmt2(0)
     DB2_MOBILE_WALLET = fmt2(0)
+
+    # Receive sales invoice payment
+    SINV2_RECEIVED_AMOUNT = fmt(SINV1_INVOICE_TOTAL)
+    SINV2_RECEIVING_WALLET = "Cash"

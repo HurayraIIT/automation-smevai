@@ -215,9 +215,23 @@ def test_trading_level1(browser):
                                total_stock=DATA.DB2_TOTAL_STOCK)
     print("OK: Dashboard Stock Update")
 
+    # DONE: Receive sales invoice payment
+    sales = SalesInvoicePage(browser)
+    sales.receive_sales_payment(sales_inv_number=DATA.SINV1_INVOICE_NUMBER,
+                                description="sales invoice payment",
+                                received_amount=DATA.SINV2_RECEIVED_AMOUNT,
+                                receiving_wallet=DATA.SINV2_RECEIVING_WALLET)
+    print("OK: Sales invoice payment received")
+
 
 def test_temp(browser):
-    pass
+    # DONE: Receive sales invoice payment
+    sales = SalesInvoicePage(browser)
+    sales.receive_sales_payment(sales_inv_number=DATA.SINV1_INVOICE_NUMBER,
+                                description="sales invoice payment",
+                                received_amount=DATA.SINV2_RECEIVED_AMOUNT,
+                                receiving_wallet=DATA.SINV2_RECEIVING_WALLET)
+    print("OK: Sales invoice payment received")
 
 # def fmt2(val):
 #     s = f'{"{:,.2f}".format(val)}'

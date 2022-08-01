@@ -45,6 +45,16 @@ class SalesInvoicePage:
     update_cancel_xpath = (By.XPATH, f'//*[@id="invoiceStatusModal"]/div/div/div/div/a[1]')
     completed_status_xpath = (By.XPATH, f'//*[@id="salesTableId"]/tbody/tr/td[5]/span')
 
+    payment_collect_button_xpath = (By.XPATH, f'//*[@id="salesTableId"]/tbody/tr/td[10]/div/ul/li[3]/a')
+    select_wallet_xpath = (By.XPATH, f'//*[@id="companyWalletId"]/select')
+    select_cash_wallet_xpath = (By.XPATH, f'//*[@id="companyWalletId"]/select/option[2]')
+    payment_description_xpath = (By.XPATH, f'//*[@id="accountReceivableFormId"]/div/div[5]/div/input')
+    payment_confirm_btn_xpath = (By.XPATH, f'//*[@id="duePayment"]/div/div/div/div/a[2]')
+    payment_cancel_btn_xpath = (By.XPATH, f'//*[@id="duePayment"]/div/div/div/div/a[1]')
+    paid_status_xpath = (By.XPATH, f'//*[@id="salesTableId"]/tbody/tr/td[6]/span')
+
+    received_amount_xpath = (By.XPATH, f'//*[@id="salesTableId"]/tbody/tr/td[9]')
+
     def __init__(self, browser):
         self.browser = browser
 
@@ -145,3 +155,40 @@ class SalesInvoicePage:
 
         # DONE: Check if invoice is completed
         assert self.browser.find_element(*self.completed_status_xpath).text == "Completed"
+
+    def receive_sales_payment(self,
+                              sales_inv_number="10000001",
+                              description="payment received",
+                              received_amount="৳1,090.00",
+                              receiving_wallet="Cash"):
+        # Load list page
+        self.browser.get(self.LIST_URL)
+        time.sleep(1)
+        # assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
+
+        # DONE: Search invoice by invoice number
+        self.browser.find_element(*self.search_xpath).click()
+        self.browser.find_element(*self.search_xpath).clear()
+        self.browser.find_element(*self.search_xpath).send_keys(sales_inv_number)
+        time.sleep(2.5)
+
+        # DONE: Mark it complete
+        self.browser.find_element(*self.search_result_action_xpath).click()
+        time.sleep(1)
+        self.browser.find_element(*self.payment_collect_button_xpath).click()
+        time.sleep(3)
+
+        element = self.browser.find_element(*self.select_wallet_xpath)
+        element.click()
+        select = Select(element)
+        select.select_by_visible_text("Cash")
+        time.sleep(1)
+
+        self.browser.find_element(*self.select_cash_wallet_xpath).click()
+        time.sleep(1)
+
+        self.browser.find_element(*self.payment_description_xpath).send_keys(description)
+        self.browser.find_element(*self.payment_confirm_btn_xpath).click()
+        time.sleep(6)
+        assert self.browser.find_element(*self.paid_status_xpath).text == "Paid"
+        assert self.browser.find_element(*self.received_amount_xpath).text == received_amount
