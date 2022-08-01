@@ -17,6 +17,10 @@ class CustomerPage:
     customer_name_xpath = (By.XPATH, f"//input[@name='name']")
     customer_phone_xpath = (By.XPATH, f"//input[@name='phone']")
 
+    customer_country_code_xpath = (By.XPATH, f'//*[@id="phoneNumCountryCode"]/div[1]/div/div/span')
+    customer_country_code_input_xpath = (By.XPATH, f'//*[@id="phoneNumCountryCode"]/span/span/span[1]/input')
+    customer_country_code_result_xpath = (By.XPATH, f'//*[@id="select2-phoneCountryCode-results"]/li[1]')
+
     save_btn_xpath = (By.XPATH, f"//button[@class='button button__themeColor']")
     cancel_btn_xpath = (By.XPATH, f"//a[@class='button']")
 
@@ -33,10 +37,19 @@ class CustomerPage:
         time.sleep(1)
         assert self.browser.find_element(*self.list_heading_xpath).text == self.list_heading_text
 
-    def create_customer(self, customer_name="customer001", customer_phone="1657887766"):
+    def create_customer(self, customer_name="customer001", customer_phone="01657887766"):
 
         self.browser.find_element(*self.customer_name_xpath).send_keys(customer_name)
         self.browser.find_element(*self.customer_phone_xpath).send_keys(customer_phone)
+
+        element = self.browser.find_element(*self.customer_country_code_xpath)
+        element.click()
+        self.browser.find_element(*self.customer_country_code_input_xpath).send_keys('+88')
+        time.sleep(2)
+        self.browser.find_element(*self.customer_country_code_result_xpath).click()
+        # select = Select(element)
+        # select.select_by_visible_text("+88")
+        time.sleep(1)
 
         self.browser.find_element(*self.save_btn_xpath).click()
         time.sleep(2)

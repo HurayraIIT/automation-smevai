@@ -14,7 +14,7 @@ class TransactionHistoryPage:
 
     account_head_xpath = (By.XPATH, f'//*[@id="transactionHistoryTableId"]/tbody/tr/td[2]/span')
     transaction_type_xpath = (By.XPATH, f'//*[@id="transactionHistoryTableId"]/tbody/tr/td[3]/span')
-    amount_xpath = (By.XPATH, f'//*[@id="transactionHistoryTableId"]/tbody/tr/td[6]')
+    amount_xpath = (By.XPATH, f'//*[@id="transactionHistoryTableId"]/tbody/tr[1]/td[6]')
 
     def __init__(self, browser):
         self.browser = browser

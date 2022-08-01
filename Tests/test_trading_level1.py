@@ -217,41 +217,19 @@ def test_trading_level1(browser):
 
 
 def test_temp(browser):
-    # Verify income_statement
-    income_statement = IncomeStatementPage(browser)
-    income_statement.check_income_statement(
-        TOTAL_SALES=DATA.IS1_TOTAL_SALES,
-        SALES_RETURN=DATA.IS1_SALES_RETURN,
-        NET_SALES=DATA.IS1_NET_SALES,
-        TOTAL_PURCHASE=DATA.IS1_TOTAL_PURCHASE,
-        PURCHASE_RETURN=DATA.IS1_PURCHASE_RETURN,
-        PURCHASE_SHIPPING_CHARGE=DATA.IS1_PURCHASE_SHIPPING_CHARGE,
-        TOTAL_COST_OF_PURCHASE=DATA.IS1_TOTAL_COST_OF_PURCHASE,
-        GROSS_PROFIT=DATA.IS1_GROSS_PROFIT,
-        TOTAL_OPERATION_EXPENSES=DATA.IS1_TOTAL_OPERATION_EXPENSES,
-        OPERATION_INCOME=DATA.IS1_OPERATION_INCOME,
-        SALES_SHIPPING_CHARGE=DATA.IS1_SALES_SHIPPING_CHARGE,
-        TOTAL_NON_OPERATION_INCOME=DATA.IS1_TOTAL_NON_OPERATION_INCOME,
-        NET_PROFIT=DATA.IS1_NET_PROFIT)
+    pass
 
-    print("OK: income_statement")
-
-
-
-# def fmt(val):
-#     s = f'৳{"{:.2f}".format(val)}'
-#     p = ''
-#     if len(s) > 7:
-#         j = 0
-#         for i in range(len(s)-1, -1, -1):
-#             j += 1
-#             if j == 7 or j == 10 or j == 13:
-#                 p += ","
-#             p += s[i]
-#         return p[::-1]
-#     else:
-#         return s
+# def fmt2(val):
+#     s = f'{"{:,.2f}".format(val)}'
+#     return s
 #
 #
 # def test_temp2(browser):
-#     print(fmt(109))
+#     print(fmt2(-0))
+#     print(fmt2(-12))
+#     print(fmt2(-120))
+#     print(fmt2(-1209))
+#     print(fmt2(-12098))
+#     print(fmt2(-120987))
+#     print(fmt2(-1209877))
+
