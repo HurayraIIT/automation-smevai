@@ -36,17 +36,17 @@ class BalanceSheetPage:
 
     def check_balance_sheet(
             self,
-            cash_wallet=0.00,
-            bank_wallet=0.00,
-            mobile_banking=0.00,
-            account_receivable=0.00,
-            inventory=0.00,
-            asset=0.00,
-            vat_amount=0.00,
-            owners_equity=0.00,
-            accounts_payable=0.00,
-            total_asset=0.00,
-            total_liabilities=0.00):
+            cash_wallet="৳0.00",
+            bank_wallet="৳0.00",
+            mobile_banking="৳0.00",
+            account_receivable="৳0.00",
+            inventory="৳500.00",
+            asset="৳0.00",
+            vat_amount="৳45.00",
+            total_asset="৳545.00",
+            owners_equity="৳0.00",
+            accounts_payable="৳545.00",
+            total_liabilities="৳545.00"):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -54,18 +54,18 @@ class BalanceSheetPage:
 
         # Check Balance Sheet
         assert self.browser.find_element(*self.total_asset_xpath).text == self.browser.find_element(*self.total_liabilities_xpath).text
-        assert(str(total_asset) in self.browser.find_element(*self.total_asset_xpath).text) == True
-        assert (str(total_liabilities) in self.browser.find_element(*self.total_liabilities_xpath).text) == True
+        assert self.browser.find_element(*self.total_asset_xpath).text == total_asset
+        assert self.browser.find_element(*self.total_liabilities_xpath).text == total_liabilities
 
-        assert (str(cash_wallet) in self.browser.find_element(*self.cash_wallet_xpath).text) == True
-        assert (str(bank_wallet) in self.browser.find_element(*self.bank_wallet_xpath).text) == True
-        assert (str(mobile_banking) in self.browser.find_element(*self.mobile_banking_xpath).text) == True
-        assert (str(account_receivable) in self.browser.find_element(*self.account_receivable_xpath).text) == True
-        assert (str(inventory) in self.browser.find_element(*self.inventory_xpath).text) == True
-        assert (str(asset) in self.browser.find_element(*self.asset_xpath).text) == True
-        assert (str(vat_amount) in self.browser.find_element(*self.vat_amount_xpath).text) == True
+        assert self.browser.find_element(*self.cash_wallet_xpath).text == cash_wallet
+        assert self.browser.find_element(*self.bank_wallet_xpath).text == bank_wallet
+        assert self.browser.find_element(*self.mobile_banking_xpath).text == mobile_banking
+        assert self.browser.find_element(*self.account_receivable_xpath).text == account_receivable
+        assert self.browser.find_element(*self.inventory_xpath).text == inventory
+        assert self.browser.find_element(*self.asset_xpath).text == asset
+        assert self.browser.find_element(*self.vat_amount_xpath).text == vat_amount
 
-        assert (str(owners_equity) in self.browser.find_element(*self.owners_equity_xpath).text) == True
-        assert (str(accounts_payable) in self.browser.find_element(*self.accounts_payable_xpath).text) == True
+        assert self.browser.find_element(*self.owners_equity_xpath).text == owners_equity
+        assert self.browser.find_element(*self.accounts_payable_xpath).text == accounts_payable
 
         time.sleep(1)

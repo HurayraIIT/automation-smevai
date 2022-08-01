@@ -27,9 +27,9 @@ class AccountPayablePage:
 
     def check_entry(self,
                     supplier_name="supplier001",
-                    total_purchase=545,
-                    total_paid=0,
-                    total_due=545):
+                    total_purchase='৳545.00',
+                    total_paid='৳0.00',
+                    total_due='৳545.00'):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -37,6 +37,6 @@ class AccountPayablePage:
 
         # Check Values
         assert self.browser.find_element(*self.supplier_name_xpath).text == supplier_name
-        assert (str(total_purchase) in self.browser.find_element(*self.total_purchase_xpath).text) == True
-        assert (f"{str(total_paid)}.00" in self.browser.find_element(*self.total_paid_xpath).text) == True
-        assert (str(total_due) in self.browser.find_element(*self.total_due_xpath).text) == True
+        assert self.browser.find_element(*self.total_purchase_xpath).text == total_purchase
+        assert self.browser.find_element(*self.total_paid_xpath).text == total_paid
+        assert self.browser.find_element(*self.total_due_xpath).text == total_due

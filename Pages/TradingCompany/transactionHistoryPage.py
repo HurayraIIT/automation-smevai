@@ -24,7 +24,10 @@ class TransactionHistoryPage:
         time.sleep(1)
         assert self.browser.find_element(*self.heading_xpath).text == self.heading_text
 
-    def check_entry(self, account_head="Purchase", transaction_type="Due", amount=545):
+    def check_entry(self,
+                    account_head="Purchase",
+                    transaction_type="Due",
+                    amount='৳545.00'):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -33,4 +36,4 @@ class TransactionHistoryPage:
         # Check Values
         assert self.browser.find_element(*self.account_head_xpath).text == account_head
         assert self.browser.find_element(*self.transaction_type_xpath).text == transaction_type
-        assert (str(amount) in self.browser.find_element(*self.amount_xpath).text) == True
+        assert self.browser.find_element(*self.amount_xpath).text == amount

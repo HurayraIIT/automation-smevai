@@ -32,30 +32,32 @@ def test_trading_level1(browser):
 
     # DONE: Create a category
     category = CategoryPage(browser)
-    category.create_category(cat_name=DATA.cat_name)
+    category.create_category(cat_name=DATA.CAT_NAME)
     print("OK: Create a category")
 
     # DONE: Create an item
     item = ItemPage(browser)
     item.load_create_page()
-    item.create_item(item_name=DATA.item_name,
-                     cat_name=DATA.cat_name,
-                     item_sku=DATA.item_sku,
-                     item_purchase_price=DATA.item_purchase_price,
-                     item_sales_price=DATA.item_sales_price,
-                     item_description=DATA.item_description)
+    item.create_item(item_name=DATA.ITEM_NAME,
+                     cat_name=DATA.CAT_NAME,
+                     item_sku=DATA.ITEM_SKU,
+                     item_purchase_price=DATA.ITEM_PURCHASE_PRICE,
+                     item_sales_price=DATA.ITEM_SALES_PRICE,
+                     item_description=DATA.ITEM_DESCRIPTION)
     print("OK: Create an item")
 
     # DONE: Create a supplier
     supplier = SupplierPage(browser)
     supplier.load_create_page()
-    supplier.create_supplier(supplier_name=DATA.supplier_name, supplier_phone=DATA.supplier_phone)
+    supplier.create_supplier(supplier_name=DATA.SUPPLIER_NAME,
+                             supplier_phone=DATA.SUPPLIER_PHONE)
     print("OK: Create a supplier")
 
     # DONE: Create a customer
     customer = CustomerPage(browser)
     customer.load_create_page()
-    customer.create_customer(customer_name=DATA.customer_name, customer_phone=DATA.customer_phone)
+    customer.create_customer(customer_name=DATA.CUSTOMER_NAME,
+                             customer_phone=DATA.CUSTOMER_PHONE)
     print("OK: Create a customer")
 
     # DONE: Create a purchase invoice
@@ -70,58 +72,59 @@ def test_trading_level1(browser):
 
     # Verify transaction history entry
     transaction = TransactionHistoryPage(browser)
-    transaction.check_entry(account_head="Purchase", transaction_type="Due", amount=DATA.PURCHASE_INVOICE_TOTAL)
+    transaction.check_entry(account_head=DATA.TH1_ACCOUNT_HEAD,
+                            transaction_type=DATA.TH1_TRANSACTION_TYPE,
+                            amount=DATA.TH1_AMOUNT)
     print("OK: transaction history entry")
 
     # Verify Account Payable Entry
     payable = AccountPayablePage(browser)
-    payable.check_entry(supplier_name=DATA.supplier_name,
-                        total_purchase=DATA.PURCHASE_INVOICE_TOTAL,
-                        total_paid=0,
-                        total_due=DATA.PURCHASE_INVOICE_TOTAL)
+    payable.check_entry(supplier_name=DATA.AP1_SUPPLIER_NAME,
+                        total_purchase=DATA.AP1_TOTAL_PURCHASE,
+                        total_paid=DATA.AP1_TOTAL_PAID,
+                        total_due=DATA.AP1_TOTAL_DUE)
     print("OK: Account Payable Entry")
 
     # Verify Stock Summary stock update
     stock = StockSummaryPage(browser)
-    stock.check_stock(item_name=DATA.item_name,
-                      purchase=DATA.PURCHASE_ITEM_QUANTITY,
-                      sale=0,
-                      purchase_return=0,
-                      sales_return=0,
-                      available_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    stock.check_stock(item_name=DATA.SS1_ITEM_NAME,
+                      purchase=DATA.SS1_PURCHASE_QTY,
+                      sale=DATA.SS1_SALE_QTY,
+                      purchase_return=DATA.SS1_PURCHASE_RETURN_QTY,
+                      sales_return=DATA.SS1_SALES_RETURN_QTY,
+                      available_stock=DATA.SS1_AVAILABLE_STOCK_QTY)
     print("OK: Stock Summary stock update")
 
     # Verify income_statement
     income_statement = IncomeStatementPage(browser)
-    # print("{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL*(1+DATA.PURCHASE_VAT_PERCENT)/10))
     income_statement.check_income_statement(
-        total_purchase="{:.2f}".format(DATA.PURCHASE_INVOICE_SUBTOTAL * (1 + DATA.PURCHASE_VAT_PERCENT) / 10),
-        purchase_shipping_charge=DATA.PURCHASE_SHIPPING,
-        total_cost_of_purchase=DATA.PURCHASE_INVOICE_TOTAL,
-        gross_profit=DATA.PURCHASE_INVOICE_TOTAL * (-1),
-        operation_income=DATA.PURCHASE_INVOICE_TOTAL * (-1),
-        net_profit=DATA.PURCHASE_INVOICE_TOTAL * (-1))
+        total_purchase=DATA.IS1_TOTAL_PURCHASE,
+        purchase_shipping_charge=DATA.IS1_PURCHASE_SHIPPING_CHARGE,
+        total_cost_of_purchase=DATA.IS1_TOTAL_COST_OF_PURCHASE,
+        gross_profit=DATA.IS1_GROSS_PROFIT,
+        operation_income=DATA.IS1_OPERATION_INCOME,
+        net_profit=DATA.IS1_NET_PROFIT)
     print("OK: income_statement")
 
     # Verify Balance Sheet
     balance_sheet = BalanceSheetPage(browser)
     balance_sheet.check_balance_sheet(
-        cash_wallet=0.00,
-        bank_wallet=0.00,
-        mobile_banking=0.00,
-        account_receivable=0.00,
-        inventory=DATA.item_purchase_price * DATA.PURCHASE_ITEM_QUANTITY,
-        asset=0.00,
-        vat_amount="{:.2f}".format((DATA.PURCHASE_VAT_PERCENT / 100) * DATA.PURCHASE_INVOICE_SUBTOTAL),
-        owners_equity=0.00,
-        accounts_payable=DATA.PURCHASE_INVOICE_TOTAL,
-        total_asset=DATA.PURCHASE_INVOICE_TOTAL,
-        total_liabilities=DATA.PURCHASE_INVOICE_TOTAL)
+        cash_wallet=DATA.BS1_CASH_WALLET_BALANCE,
+        bank_wallet=DATA.BS1_BANK_WALLET_BALANCE,
+        mobile_banking=DATA.BS1_MOBILE_BANKING_BALANCE,
+        account_receivable=DATA.BS1_ACCOUNT_RECEIVABLE,
+        inventory=DATA.BS1_INVENTORY,
+        asset=DATA.BS1_ASSET,
+        vat_amount=DATA.BS1_VAT_CURRENT_AMOUNT,
+        total_asset=DATA.BS1_TOTAL_ASSET,
+        owners_equity=DATA.BS1_OWNERS_EQUITY,
+        accounts_payable=DATA.BS1_ACCOUNTS_PAYABLE,
+        total_liabilities=DATA.BS1_TOTAL_EQUITY_AND_LIABILITIES)
     print("OK: Balance Sheet")
 
     # Verify Dashboard Stock Update
-    dashboard2 = DashboardPage(browser)
-    dashboard2.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    dashboard1 = DashboardPage(browser)
+    dashboard1.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
     print("OK: Dashboard Stock Update")
 
     # TODO: Create a sales invoice

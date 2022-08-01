@@ -1,4 +1,7 @@
 
+def fmt(val):
+    return f'৳{"{:.2f}".format(val)}'
+
 class LINKS:
 
     ROOT = "smevai.com"
@@ -60,22 +63,22 @@ class LINKS:
 
 class DATA:
     # Category data
-    cat_name = "cat001"
+    CAT_NAME = "cat001"
 
     # Item data
-    item_name = "item001"
-    item_sku = "sk001"
-    item_purchase_price = 100
-    item_sales_price = 200
-    item_description = "item description"
+    ITEM_NAME = "item001"
+    ITEM_SKU = "sk001"
+    ITEM_PURCHASE_PRICE = 100
+    ITEM_SALES_PRICE = 200
+    ITEM_DESCRIPTION = "item description"
 
     # Supplier
-    supplier_name = "supplier001"
-    supplier_phone = "1657887766"
+    SUPPLIER_NAME = "supplier001"
+    SUPPLIER_PHONE = "1657887766"
 
     # Customer
-    customer_name = "customer001"
-    customer_phone = "1657887766"
+    CUSTOMER_NAME = "customer001"
+    CUSTOMER_PHONE = "1657887766"
 
     # Purchase invoice
     PURCHASE_INVOICE_NUMBER = "10000001"
@@ -85,6 +88,55 @@ class DATA:
     PURCHASE_VAT_PERCENT = 10
     PURCHASE_INVOICE_SUBTOTAL = 450
     PURCHASE_INVOICE_TOTAL = 545
+
+    # Purchase invoice creation check data
+    # TH = Transaction History
+    TH1_ACCOUNT_HEAD = "Purchase"
+    TH1_TRANSACTION_TYPE = "Due"
+    TH1_AMOUNT = fmt(PURCHASE_INVOICE_TOTAL)
+
+    # AP = Account Payable
+    AP1_SUPPLIER_NAME = SUPPLIER_NAME
+    AP1_TOTAL_PURCHASE = fmt(PURCHASE_INVOICE_TOTAL)
+    AP1_TOTAL_PAID = fmt(0)
+    AP1_TOTAL_DUE = fmt(PURCHASE_INVOICE_TOTAL)
+
+    # SS = Stock Summary
+    SS1_ITEM_NAME = ITEM_NAME
+    SS1_PURCHASE_QTY = str(PURCHASE_ITEM_QUANTITY)
+    SS1_SALE_QTY = "0"
+    SS1_PURCHASE_RETURN_QTY = "0"
+    SS1_SALES_RETURN_QTY = "0"
+    SS1_AVAILABLE_STOCK_QTY = str(PURCHASE_ITEM_QUANTITY)
+
+    # IS = Income Statement
+    IS1_TOTAL_SALES	= fmt(0)
+    IS1_SALES_RETURN = fmt(0)
+    IS1_NET_SALES = fmt(0)
+    IS1_TOTAL_PURCHASE = fmt(PURCHASE_INVOICE_SUBTOTAL*(1+PURCHASE_VAT_PERCENT)/10)
+    IS1_PURCHASE_RETURN = fmt(0)
+    IS1_PURCHASE_SHIPPING_CHARGE = fmt(PURCHASE_SHIPPING)
+    IS1_TOTAL_COST_OF_PURCHASE = fmt(PURCHASE_INVOICE_TOTAL)
+    IS1_GROSS_PROFIT = fmt(PURCHASE_INVOICE_TOTAL * (-1))
+    IS1_TOTAL_OPERATION_EXPENSES = fmt(0)
+    IS1_OPERATION_INCOME = fmt(PURCHASE_INVOICE_TOTAL * (-1))
+    IS1_SALES_SHIPPING_CHARGE = fmt(0)
+    IS1_TOTAL_NON_OPERATION_INCOME = fmt(0)
+    IS1_NET_PROFIT = fmt(PURCHASE_INVOICE_TOTAL * (-1))
+
+    # BS = Balance Sheet
+    BS1_CASH_WALLET_BALANCE = fmt(0)
+    BS1_BANK_WALLET_BALANCE = fmt(0)
+    BS1_MOBILE_BANKING_BALANCE = fmt(0)
+    BS1_ACCOUNT_RECEIVABLE = fmt(0)
+    BS1_INVENTORY = fmt(ITEM_PURCHASE_PRICE*PURCHASE_ITEM_QUANTITY)
+    BS1_ASSET = fmt(0)
+    BS1_VAT_CURRENT_AMOUNT = fmt((PURCHASE_VAT_PERCENT/100)*PURCHASE_INVOICE_SUBTOTAL)
+    BS1_TOTAL_ASSET = fmt(PURCHASE_INVOICE_TOTAL)
+
+    BS1_OWNERS_EQUITY = fmt(0)
+    BS1_ACCOUNTS_PAYABLE = fmt(PURCHASE_INVOICE_TOTAL)
+    BS1_TOTAL_EQUITY_AND_LIABILITIES = fmt(PURCHASE_INVOICE_TOTAL)
 
     # Sales invoice
     SALES_INVOICE_NUMBER = "10000001"

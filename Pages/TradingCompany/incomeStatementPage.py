@@ -38,14 +38,14 @@ class IncomeStatementPage:
         assert self.browser.find_element(*self.heading_xpath).text == self.heading_text
 
     def check_income_statement(self,
-                               net_sales=0,
-                               total_purchase=495,
-                               purchase_shipping_charge=50,
-                               total_cost_of_purchase=545,
-                               gross_profit=-545,
-                               total_operation_expenses=0,
-                               operation_income=-545,
-                               net_profit=-545):
+                               net_sales="৳0.00",
+                               total_purchase="৳495.00",
+                               purchase_shipping_charge="৳50.00",
+                               total_cost_of_purchase="৳545.00",
+                               gross_profit="৳-545.00",
+                               total_operation_expenses="৳0.00",
+                               operation_income="৳-545.00",
+                               net_profit="৳-545.00"):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -55,30 +55,13 @@ class IncomeStatementPage:
         self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")
         time.sleep(1)
 
-        assert ("0.00" in self.browser.find_element(
-            *self.net_sales_xpath).text) == True
-
-        assert (str(total_purchase) in self.browser.find_element(
-            *self.total_purchase_xpath).text) == True
-
-        assert (str(purchase_shipping_charge) in self.browser.find_element(
-            *self.purchase_shipping_charge_xpath).text) == True
-
-        assert (str(total_cost_of_purchase) in self.browser.find_element(
-            *self.total_cost_of_purchase_xpath).text) == True
-
-        # print(str(gross_profit))
-        # print(self.browser.find_element(*self.gross_profit_xpath).text)
-        assert (str(gross_profit) in self.browser.find_element(
-            *self.gross_profit_xpath).text) == True
-
-        assert ("0.00" in self.browser.find_element(
-            *self.total_operation_expenses_xpath).text) == True
-
-        assert (str(operation_income) in self.browser.find_element(
-            *self.operation_income_xpath).text) == True
-
-        assert (str(net_profit) in self.browser.find_element(
-            *self.net_profit_xpath).text) == True
+        assert self.browser.find_element(*self.net_sales_xpath).text == net_sales
+        assert self.browser.find_element(*self.total_purchase_xpath).text == total_purchase
+        assert self.browser.find_element(*self.purchase_shipping_charge_xpath).text == purchase_shipping_charge
+        assert self.browser.find_element(*self.total_cost_of_purchase_xpath).text == total_cost_of_purchase
+        assert self.browser.find_element(*self.gross_profit_xpath).text == gross_profit
+        assert self.browser.find_element(*self.total_operation_expenses_xpath).text == total_operation_expenses
+        assert self.browser.find_element(*self.operation_income_xpath).text == operation_income
+        assert self.browser.find_element(*self.net_profit_xpath).text == net_profit
 
         time.sleep(1)

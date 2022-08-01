@@ -29,11 +29,11 @@ class StockSummaryPage:
 
     def check_stock(self,
                     item_name="item001",
-                    purchase=5,
-                    sale=0,
-                    purchase_return=0,
-                    sales_return=0,
-                    available_stock=5):
+                    purchase="5",
+                    sale="0",
+                    purchase_return="0",
+                    sales_return="0",
+                    available_stock="5"):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -41,9 +41,9 @@ class StockSummaryPage:
 
         # Check Stock
         assert self.browser.find_element(*self.item_name_xpath).text == item_name
-        assert self.browser.find_element(*self.purchase_xpath).text == str(purchase)
-        assert self.browser.find_element(*self.sale_xpath).text == str(sale)
-        assert self.browser.find_element(*self.purchase_return_xpath).text == str(purchase_return)
-        assert self.browser.find_element(*self.sales_return_xpath).text == str(sales_return)
-        assert self.browser.find_element(*self.available_stock_xpath).text == str(available_stock)
+        assert self.browser.find_element(*self.purchase_xpath).text == purchase
+        assert self.browser.find_element(*self.sale_xpath).text == sale
+        assert self.browser.find_element(*self.purchase_return_xpath).text == purchase_return
+        assert self.browser.find_element(*self.sales_return_xpath).text == sales_return
+        assert self.browser.find_element(*self.available_stock_xpath).text == available_stock
         time.sleep(1)
