@@ -36,6 +36,6 @@ class CompanySettingsPage:
         self.browser.find_element(*self.vat_applicable_checkbox_xpath).click()
         self.browser.find_element(*self.password_input_xpath).send_keys(LINKS.PASSWORD)
         self.browser.find_element(*self.confirm_button_xpath).click()
-        time.sleep(1.5)
+        time.sleep(3)
 
         assert ("/settings/company" in self.browser.current_url) == True

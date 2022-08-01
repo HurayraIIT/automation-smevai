@@ -75,14 +75,14 @@ class PurchaseInvoicePage:
 
         self.browser.find_element(*self.supplier_multiselect_xpath).click()
         time.sleep(1)
-        self.browser.find_element(*self.supplier_multiselect_after_xpath).send_keys(DATA.SUPPLIER_NAME)
+        self.browser.find_element(*self.supplier_multiselect_after_xpath).send_keys(DATA.SUPPLIER1_NAME)
         time.sleep(1)
         self.browser.find_element(*self.supplier_multiselect_after_xpath).send_keys(Keys.ENTER)
         time.sleep(1)
 
         self.browser.find_element(*self.product_multiselect_xpath).click()
         time.sleep(1)
-        self.browser.find_element(*self.product_multiselect_after_xpath).send_keys(DATA.ITEM_NAME)
+        self.browser.find_element(*self.product_multiselect_after_xpath).send_keys(DATA.ITEM1_NAME)
         time.sleep(1)
         self.browser.find_element(*self.product_multiselect_after_xpath).send_keys(Keys.ENTER)
         time.sleep(1)

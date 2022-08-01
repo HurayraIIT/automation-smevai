@@ -32,42 +32,42 @@ def test_trading_level1(browser):
 
     # DONE: Create a category
     category = CategoryPage(browser)
-    category.create_category(cat_name=DATA.CAT_NAME)
+    category.create_category(cat_name=DATA.CAT1_NAME)
     print("OK: Create a category")
 
     # DONE: Create an item
     item = ItemPage(browser)
     item.load_create_page()
-    item.create_item(item_name=DATA.ITEM_NAME,
-                     cat_name=DATA.CAT_NAME,
-                     item_sku=DATA.ITEM_SKU,
-                     item_purchase_price=DATA.ITEM_PURCHASE_PRICE,
-                     item_sales_price=DATA.ITEM_SALES_PRICE,
-                     item_description=DATA.ITEM_DESCRIPTION)
+    item.create_item(item_name=DATA.ITEM1_NAME,
+                     cat_name=DATA.CAT1_NAME,
+                     item_sku=DATA.ITEM1_SKU,
+                     item_purchase_price=DATA.ITEM1_PURCHASE_PRICE,
+                     item_sales_price=DATA.ITEM1_SALES_PRICE,
+                     item_description=DATA.ITEM1_DESCRIPTION)
     print("OK: Create an item")
 
     # DONE: Create a supplier
     supplier = SupplierPage(browser)
     supplier.load_create_page()
-    supplier.create_supplier(supplier_name=DATA.SUPPLIER_NAME,
-                             supplier_phone=DATA.SUPPLIER_PHONE)
+    supplier.create_supplier(supplier_name=DATA.SUPPLIER1_NAME,
+                             supplier_phone=DATA.SUPPLIER1_PHONE)
     print("OK: Create a supplier")
 
     # DONE: Create a customer
     customer = CustomerPage(browser)
     customer.load_create_page()
-    customer.create_customer(customer_name=DATA.CUSTOMER_NAME,
-                             customer_phone=DATA.CUSTOMER_PHONE)
+    customer.create_customer(customer_name=DATA.CUSTOMER1_NAME,
+                             customer_phone=DATA.CUSTOMER1_PHONE)
     print("OK: Create a customer")
 
     # DONE: Create a purchase invoice
     purchase = PurchaseInvoicePage(browser)
-    purchase.create_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER,
-                                     purchase_item_quantity=DATA.PURCHASE_ITEM_QUANTITY,
-                                     purchase_item_discount=DATA.PURCHASE_ITEM_DISCOUNT,
-                                     purchase_item_shipping=DATA.PURCHASE_SHIPPING,
-                                     purchase_item_vat_percent=DATA.PURCHASE_VAT_PERCENT)
-    purchase.complete_purchase_invoice(purchase_inv_number=DATA.PURCHASE_INVOICE_NUMBER)
+    purchase.create_purchase_invoice(purchase_inv_number=DATA.PINV1_INVOICE_NUMBER,
+                                     purchase_item_quantity=DATA.PINV1_ITEM_QUANTITY,
+                                     purchase_item_discount=DATA.PINV1_ITEM_DISCOUNT,
+                                     purchase_item_shipping=DATA.PINV1_SHIPPING,
+                                     purchase_item_vat_percent=DATA.PINV1_VAT_PERCENT)
+    purchase.complete_purchase_invoice(purchase_inv_number=DATA.PINV1_INVOICE_NUMBER)
     print("OK: Create a purchase invoice")
 
     # Verify transaction history entry
@@ -124,7 +124,7 @@ def test_trading_level1(browser):
 
     # Verify Dashboard Stock Update
     dashboard1 = DashboardPage(browser)
-    dashboard1.check_dashboard(total_stock=DATA.PURCHASE_ITEM_QUANTITY)
+    dashboard1.check_dashboard(total_stock=DATA.PINV1_ITEM_QUANTITY)
     print("OK: Dashboard Stock Update")
 
     # TODO: Create a sales invoice
@@ -135,10 +135,10 @@ def test_trading_level1(browser):
 def test_temp(browser):
     # DONE: Create a sales invoice
     sales = SalesInvoicePage(browser)
-    sales.create_sales_invoice(sales_inv_number=DATA.SALES_INVOICE_NUMBER,
-                               sales_item_quantity=DATA.SALES_ITEM_QUANTITY,
-                               sales_item_discount=DATA.SALES_ITEM_DISCOUNT,
-                               sales_item_shipping=DATA.SALES_SHIPPING,
-                               sales_item_vat_percent=DATA.SALES_VAT_PERCENT)
+    sales.create_sales_invoice(sales_inv_number=DATA.SINV1_INVOICE_NUMBER,
+                               sales_item_quantity=DATA.SINV1_ITEM_QUANTITY,
+                               sales_item_discount=DATA.SINV1_ITEM_DISCOUNT,
+                               sales_item_shipping=DATA.SINV1_SHIPPING,
+                               sales_item_vat_percent=DATA.SINV1_VAT_PERCENT)
     # sales.complete_sales_invoice(sales_inv_number=DATA.SALES_INVOICE_NUMBER)
     print("OK: Create a sales invoice")
