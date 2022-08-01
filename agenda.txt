@@ -22,12 +22,26 @@ Steps:
 16. Complete Sales Invoice - DONE
 17. Verify transaction history entry - DONE
 18. Verify Account Receivable Entry - DONE
-19. Verify Stock Summary stock update - TODO
-20. Verify Income Statement - TODO
-21. Verify Balance Sheet - TODO
-22. Verify Dashboard Stock Update - TODO
+19. Verify Stock Summary stock update - DONE
+20. Verify Income Statement - DONE
+21. Verify Balance Sheet - DONE
+22. Verify Dashboard Stock Update - DONE
 
-17. ...to be continued
+23. Receive sales payment - TODO
+24. Verify transaction history entry - TODO
+25. Verify Account Receivable Entry - TODO
+26. Verify Stock Summary stock update - TODO
+27. Verify Income Statement - TODO
+28. Verify Balance Sheet - TODO
+29. Verify Dashboard Stock Update - TODO
+
+30. Pay for purchase - TODO
+31. Verify transaction history entry - TODO
+32. Verify Account Receivable Entry - TODO
+33. Verify Stock Summary stock update - TODO
+34. Verify Income Statement - TODO
+35. Verify Balance Sheet - TODO
+36. Verify Dashboard Stock Update - TODO
 
 Pages:
 

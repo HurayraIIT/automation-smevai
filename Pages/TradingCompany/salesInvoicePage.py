@@ -133,15 +133,15 @@ class SalesInvoicePage:
         self.browser.find_element(*self.search_xpath).click()
         self.browser.find_element(*self.search_xpath).clear()
         self.browser.find_element(*self.search_xpath).send_keys(sales_inv_number)
-        time.sleep(1)
+        time.sleep(2)
 
         # DONE: Mark it complete
         self.browser.find_element(*self.search_result_action_xpath).click()
-        time.sleep(0.5)
+        time.sleep(1)
         self.browser.find_element(*self.complete_button_xpath).click()
         time.sleep(1)
         self.browser.find_element(*self.update_confirm_xpath).click()
-        time.sleep(1.5)
+        time.sleep(2)
 
         # DONE: Check if invoice is completed
         assert self.browser.find_element(*self.completed_status_xpath).text == "Completed"
