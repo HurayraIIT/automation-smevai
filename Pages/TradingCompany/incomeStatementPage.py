@@ -12,22 +12,19 @@ class IncomeStatementPage:
     heading_xpath = (By.XPATH, f"//h2[@class='access__form__title']")
     heading_text = f"Income Statement"
 
-    net_sales_xpath = (By.XPATH,
-                       f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[1]/tfoot/tr/td[2]')
-    total_purchase_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/thead/tr/th[2]')
-    purchase_shipping_charge_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[2]')
-    total_cost_of_purchase_xpath = (By.XPATH,
-                                      f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/tfoot/tr/td[2]')
-    gross_profit_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[2]/td/table/tfoot/tr/td[2]')
-    total_operation_expenses_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[3]/td/table/tfoot/tr/td[2]')
-    operation_income_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[4]/td/table/thead/tr/th[2]')
-    net_profit_xpath = (By.XPATH,
-                            f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[5]/td/table/tfoot/tr/td[2]')
+    TOTAL_SALES_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[1]/thead/tr[2]/th[2]')
+    SALES_RETURN_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[1]/tbody/tr/td[2]')
+    NET_SALES_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[1]/tfoot/tr/td[2]')
+    TOTAL_PURCHASE_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/thead/tr/th[2]')
+    PURCHASE_RETURN_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/tbody/tr[1]/td[2]')
+    PURCHASE_SHIPPING_CHARGE_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[2]')
+    TOTAL_COST_OF_PURCHASE_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[1]/td/table[2]/tfoot/tr/td[2]')
+    GROSS_PROFIT_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[2]/td/table/tfoot/tr/td[2]')
+    TOTAL_OPERATION_EXPENSES_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[3]/td/table/tfoot/tr/td[2]')
+    OPERATION_INCOME_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[4]/td/table/thead/tr/th[2]')
+    SALES_SHIPPING_CHARGE_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[4]/td/table/tbody/tr/td[2]')
+    TOTAL_NON_OPERATION_INCOME_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[4]/td/table/tfoot/tr/td[2]')
+    NET_PROFIT_xpath = (By.XPATH, f'/html/body/div[1]/div[2]/div[3]/div[2]/div/table/tbody/tr[5]/td/table/tfoot/tr/td[2]')
 
     def __init__(self, browser):
         self.browser = browser
@@ -38,14 +35,19 @@ class IncomeStatementPage:
         assert self.browser.find_element(*self.heading_xpath).text == self.heading_text
 
     def check_income_statement(self,
-                               net_sales="৳0.00",
-                               total_purchase="৳495.00",
-                               purchase_shipping_charge="৳50.00",
-                               total_cost_of_purchase="৳545.00",
-                               gross_profit="৳-545.00",
-                               total_operation_expenses="৳0.00",
-                               operation_income="৳-545.00",
-                               net_profit="৳-545.00"):
+                               TOTAL_SALES="৳0.00",
+                               SALES_RETURN="৳0.00",
+                               NET_SALES="৳0.00",
+                               TOTAL_PURCHASE="৳0.00",
+                               PURCHASE_RETURN="৳0.00",
+                               PURCHASE_SHIPPING_CHARGE="৳0.00",
+                               TOTAL_COST_OF_PURCHASE="৳0.00",
+                               GROSS_PROFIT="৳0.00",
+                               TOTAL_OPERATION_EXPENSES="৳0.00",
+                               OPERATION_INCOME="৳0.00",
+                               SALES_SHIPPING_CHARGE="৳0.00",
+                               TOTAL_NON_OPERATION_INCOME="৳0.00",
+                               NET_PROFIT="৳0.00"):
         # Load Page
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
@@ -55,13 +57,18 @@ class IncomeStatementPage:
         self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")
         time.sleep(1)
 
-        assert self.browser.find_element(*self.net_sales_xpath).text == net_sales
-        assert self.browser.find_element(*self.total_purchase_xpath).text == total_purchase
-        assert self.browser.find_element(*self.purchase_shipping_charge_xpath).text == purchase_shipping_charge
-        assert self.browser.find_element(*self.total_cost_of_purchase_xpath).text == total_cost_of_purchase
-        assert self.browser.find_element(*self.gross_profit_xpath).text == gross_profit
-        assert self.browser.find_element(*self.total_operation_expenses_xpath).text == total_operation_expenses
-        assert self.browser.find_element(*self.operation_income_xpath).text == operation_income
-        assert self.browser.find_element(*self.net_profit_xpath).text == net_profit
+        assert self.browser.find_element(*self.TOTAL_SALES_xpath).text == TOTAL_SALES
+        assert self.browser.find_element(*self.SALES_RETURN_xpath).text == SALES_RETURN
+        assert self.browser.find_element(*self.NET_SALES_xpath).text == NET_SALES
+        assert self.browser.find_element(*self.TOTAL_PURCHASE_xpath).text == TOTAL_PURCHASE
+        assert self.browser.find_element(*self.PURCHASE_RETURN_xpath).text == PURCHASE_RETURN
+        assert self.browser.find_element(*self.PURCHASE_SHIPPING_CHARGE_xpath).text == PURCHASE_SHIPPING_CHARGE
+        assert self.browser.find_element(*self.TOTAL_COST_OF_PURCHASE_xpath).text == TOTAL_COST_OF_PURCHASE
+        assert self.browser.find_element(*self.GROSS_PROFIT_xpath).text == GROSS_PROFIT
+        assert self.browser.find_element(*self.TOTAL_OPERATION_EXPENSES_xpath).text == TOTAL_OPERATION_EXPENSES
+        assert self.browser.find_element(*self.OPERATION_INCOME_xpath).text == OPERATION_INCOME
+        assert self.browser.find_element(*self.SALES_SHIPPING_CHARGE_xpath).text == SALES_SHIPPING_CHARGE
+        assert self.browser.find_element(*self.TOTAL_NON_OPERATION_INCOME_xpath).text == TOTAL_NON_OPERATION_INCOME
+        assert self.browser.find_element(*self.NET_PROFIT_xpath).text == NET_PROFIT
 
         time.sleep(1)

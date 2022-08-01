@@ -1,6 +1,17 @@
 
 def fmt(val):
-    return f'৳{"{:.2f}".format(val)}'
+    s = f'৳{"{:.2f}".format(val)}'
+    p = ''
+    if (str(val)[0]!='-' and len(s) > 7) or (str(val)[0]=='-' and len(s) > 8):
+        j = 0
+        for i in range(len(s)-1, -1, -1):
+            j += 1
+            if j == 7 or j == 10 or j == 13:
+                p += ","
+            p += s[i]
+        return p[::-1]
+    else:
+        return s
 
 
 class LINKS:
@@ -16,8 +27,8 @@ class LINKS:
     PASSWORD = "pass1234"
 
     # Which site do you want to test?
-    SITE = TESTING_SITE
-    # SITE = APP_SITE
+    # SITE = TESTING_SITE
+    SITE = APP_SITE
 
     # Common Pages
     LOGIN_PAGE = SITE + "/login"
@@ -140,6 +151,12 @@ class DATA:
     BS1_ACCOUNTS_PAYABLE = fmt(PINV1_INVOICE_TOTAL)
     BS1_TOTAL_EQUITY_AND_LIABILITIES = fmt(PINV1_INVOICE_TOTAL)
 
+    # DB = Dashboard
+    DB1_TOTAL_ORDER = "0"
+    DB1_AVG_ORDER_VALUE = fmt(0)
+    DB1_CASH_IN_HAND = fmt(0)
+    DB1_TOTAL_STOCK = "5"
+
     # Sales invoice
     SINV1_INVOICE_NUMBER = "10000001"
     SINV1_ITEM_QUANTITY = 5
@@ -148,3 +165,58 @@ class DATA:
     SINV1_VAT_PERCENT = 10
     SINV1_INVOICE_SUBTOTAL = 900
     SINV1_INVOICE_TOTAL = 1090
+
+    # Sales invoice creation check data
+    # TH = Transaction History
+    TH2_ACCOUNT_HEAD = "Sales"
+    TH2_TRANSACTION_TYPE = "Due"
+    TH2_AMOUNT = fmt(SINV1_INVOICE_TOTAL)
+
+    # AR = Account Receivable
+    AR2_SUPPLIER_NAME = CUSTOMER1_NAME
+    AR2_TOTAL_SELL = fmt(SINV1_INVOICE_TOTAL)
+    AR2_TOTAL_RECEIVED = fmt(0)
+    AR2_TOTAL_DUE = fmt(SINV1_INVOICE_TOTAL)
+
+    # SS = Stock Summary
+    SS2_ITEM_NAME = ITEM1_NAME
+    SS2_PURCHASE_QTY = str(PINV1_ITEM_QUANTITY)
+    SS2_SALE_QTY = str(SINV1_ITEM_QUANTITY)
+    SS2_PURCHASE_RETURN_QTY = "0"
+    SS2_SALES_RETURN_QTY = "0"
+    SS2_AVAILABLE_STOCK_QTY = "0"
+
+    # IS = Income Statement
+    IS2_TOTAL_SALES = fmt(SINV1_INVOICE_TOTAL-SINV1_SHIPPING)
+    IS2_SALES_RETURN = fmt(0)
+    IS2_NET_SALES = IS2_TOTAL_SALES
+    IS2_TOTAL_PURCHASE = fmt(PINV1_INVOICE_SUBTOTAL*(1+PINV1_VAT_PERCENT)/10)
+    IS2_PURCHASE_RETURN = fmt(0)
+    IS2_PURCHASE_SHIPPING_CHARGE = fmt(PINV1_SHIPPING)
+    IS2_TOTAL_COST_OF_PURCHASE = fmt(PINV1_INVOICE_TOTAL)
+    IS2_GROSS_PROFIT = fmt(SINV1_INVOICE_TOTAL-SINV1_SHIPPING-PINV1_INVOICE_TOTAL)
+    IS2_TOTAL_OPERATION_EXPENSES = fmt(0)
+    IS2_OPERATION_INCOME = IS2_GROSS_PROFIT
+    IS2_SALES_SHIPPING_CHARGE = fmt(SINV1_SHIPPING)
+    IS2_TOTAL_NON_OPERATION_INCOME = IS2_SALES_SHIPPING_CHARGE
+    IS2_NET_PROFIT = IS2_TOTAL_COST_OF_PURCHASE
+
+    # BS = Balance Sheet
+    BS2_CASH_WALLET_BALANCE = fmt(0)
+    BS2_BANK_WALLET_BALANCE = fmt(0)
+    BS2_MOBILE_BANKING_BALANCE = fmt(0)
+    BS2_ACCOUNT_RECEIVABLE = fmt(SINV1_INVOICE_TOTAL)
+    BS2_INVENTORY = fmt(ITEM1_PURCHASE_PRICE*PINV1_ITEM_QUANTITY-SINV1_ITEM_QUANTITY*(ITEM1_PURCHASE_PRICE*(100-PINV1_ITEM_DISCOUNT)/100))
+    BS2_ASSET = fmt(0)
+    BS2_VAT_CURRENT_AMOUNT = fmt((PINV1_VAT_PERCENT / 100) * PINV1_INVOICE_SUBTOTAL)
+    BS2_TOTAL_ASSET = fmt(1185)
+
+    BS2_OWNERS_EQUITY = fmt(640)
+    BS2_ACCOUNTS_PAYABLE = fmt(545)
+    BS2_TOTAL_EQUITY_AND_LIABILITIES = fmt(1185)
+
+    # DB = Dashboard
+    DB2_TOTAL_ORDER = "1"
+    DB2_AVG_ORDER_VALUE = fmt(SINV1_INVOICE_TOTAL)
+    DB2_CASH_IN_HAND = fmt(0)
+    DB2_TOTAL_STOCK = "0"

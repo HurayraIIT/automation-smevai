@@ -18,8 +18,15 @@ Steps:
 13. Verify Balance Sheet - DONE
 14. Verify Dashboard Stock Update - DONE
 
-15. Create Sales Invoice
-16. Complete Sales Invoice
+15. Create Sales Invoice - DONE
+16. Complete Sales Invoice - DONE
+17. Verify transaction history entry - DONE
+18. Verify Account Receivable Entry - DONE
+19. Verify Stock Summary stock update - TODO
+20. Verify Income Statement - TODO
+21. Verify Balance Sheet - TODO
+22. Verify Dashboard Stock Update - TODO
+
 17. ...to be continued
 
 Pages:

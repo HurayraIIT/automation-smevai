@@ -25,15 +25,19 @@ class DashboardPage:
         time.sleep(1)
         assert self.browser.find_element(*self.heading_xpath).text == self.heading_text
 
-    def check_dashboard(self, total_order=0, avg_order_value=0.00, cash_in_hand=0.00, total_stock=5):
+    def check_dashboard(self,
+                        total_order="0",
+                        avg_order_value="৳1,090.00",
+                        cash_in_hand="৳0.00",
+                        total_stock="5"):
         self.browser.get(self.PAGE_URL)
         time.sleep(1)
         assert self.browser.find_element(*self.heading_xpath).text == self.heading_text
 
-        assert self.browser.find_element(*self.total_order_xpath).text == str(total_order)
-        assert (str(avg_order_value) in self.browser.find_element(*self.avg_order_value_xpath).text) == True
-        assert (str(cash_in_hand) in self.browser.find_element(*self.cash_in_hand_xpath).text) == True
-        assert self.browser.find_element(*self.total_stock_xpath).text == str(total_stock)
+        assert self.browser.find_element(*self.total_order_xpath).text == total_order
+        assert self.browser.find_element(*self.avg_order_value_xpath).text == avg_order_value
+        assert self.browser.find_element(*self.cash_in_hand_xpath).text == cash_in_hand
+        assert self.browser.find_element(*self.total_stock_xpath).text == total_stock
 
     def click_logout(self):
         self.browser.find_element(*self.logout_button_link_xpath).click()
